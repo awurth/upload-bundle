@@ -3,7 +3,9 @@
     "type": "symfony-bundle",
     "license": "MIT",
     "require": {
-        "php": "^7.2"
+        "php": "^7.2",
+        "symfony/http-foundation": "^4.0|^5.0",
+        "symfony/property-access": "^4.0|^5.0"
     },
     "require-dev": {
     },
