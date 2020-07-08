@@ -2,7 +2,7 @@
 
 namespace Awurth\UploadBundle\Storage;
 
-use Symfony\Component\HttpFoundation\File\File;
+use Awurth\UploadBundle\Upload\UploadResult;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class FileSystemStorage extends AbstractStorage
@@ -14,7 +14,7 @@ class FileSystemStorage extends AbstractStorage
         return file_exists($file) ? unlink($file) : false;
     }
 
-    public function upload(UploadedFile $file, $object, string $mappingName): File
+    public function upload(UploadedFile $file, $object, string $mappingName): UploadResult
     {
         $mapping = $this->getMapping($mappingName);
 
@@ -24,9 +24,7 @@ class FileSystemStorage extends AbstractStorage
 
         $this->remove($object, $mappingName);
 
-        $this->propertyAccessor->setValue($object, $mapping->getPropertyPath(), $name);
-
-        return $movedFile;
+        return new UploadResult($movedFile, $name);
     }
 
     public function resolveUri($object, string $mappingName): ?string

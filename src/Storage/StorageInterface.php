@@ -3,7 +3,7 @@
 namespace Awurth\UploadBundle\Storage;
 
 
-use Symfony\Component\HttpFoundation\File\File;
+use Awurth\UploadBundle\Upload\UploadResult;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 interface StorageInterface
@@ -14,5 +14,5 @@ interface StorageInterface
 
     public function resolveUri($object, string $mappingName): ?string;
 
-    public function upload(UploadedFile $file, $object, string $mappingName): File;
+    public function upload(UploadedFile $file, $object, string $mappingName): UploadResult;
 }
