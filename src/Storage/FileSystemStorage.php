@@ -22,7 +22,9 @@ class FileSystemStorage extends AbstractStorage
 
         $movedFile = $file->move($mapping->getUploadDestination(), $name);
 
-        $this->remove($object, $mappingName);
+        if ($object) {
+            $this->remove($object, $mappingName);
+        }
 
         return new UploadResult($movedFile, $name);
     }
